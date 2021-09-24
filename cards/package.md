@@ -1,6 +1,6 @@
-# {{ name }}
+# {{ package.title }}
 
 
-```yaml package
-descriptor: https://raw.githubusercontent.com/{{ user }}/{{ repo }}/{{ branch }}/{{ path }}
+```json package
+{"descriptor": {{ package.to_json() }}}
 ```
