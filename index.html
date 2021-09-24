@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="It's a template document created automatically to introduce Livemark. We will list here core [Livemark](https://livemark.frictionlessdata.io/) features and you can play with theme live editing the document. It's possible to use any standard Markdown features as well.">
-<meta name="keywords" content="welcome,to,livemark">
+<meta name="description" content="None">
+<meta name="keywords" content="data,packages">
 <link rel="icon" href="None">
-<title>Welcome to Livemark | Livemark</title>
+<title>Data Packages</title>
 <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/prismjs@1.23.0/themes/prism.css">
@@ -1210,13 +1210,75 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 </style>
 <style>
 
+#livemark-pages {
+  color: #888;
+}
+
+#livemark-pages ul {
+  overflow: hidden;
+  position: relative;
+  padding-left: 0;
+  margin: 0;
+}
+
+#livemark-pages ul.secondary {
+  margin-left: 20px;
+  display: none;
+}
+
+#livemark-pages li.active ul.secondary {
+  display: block;
+}
+
+#livemark-pages li {
+  list-style: none;
+}
+
+#livemark-pages a {
+  display: inline-block;
+  color: currentColor;
+  position: relative;
+  width: 100%;
+  line-height: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#livemark-pages li.active > a {
+  font-weight: 700;
+}
+
+#livemark-pages li.group.active > a {
+  font-weight: normal;
+}
+
+#livemark-pages li.group a.primary::after {
+  content: "\f054";
+  font-size: 16px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 2px;
+  right: 0px;
+}
+
+#livemark-pages li.group.active a.primary::after {
+  content: "\f078";
+}
+
+#livemark-pages a:hover {
+  color: #80b2e6;
+}
+
+</style>
+<style>
+
 .livemark-reference {
   display: block;
   /* font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;; */
 }
 
 </style>
-<link rel="stylesheet" href="https://unpkg.com/handsontable@9.0.0/dist/handsontable.min.css">
 <style>
 
 #livemark-topics {
@@ -1324,6 +1386,30 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 }
 
 #livemark-notes a[target="_blank"]:hover:after {
+  color: #80b2e6;
+}
+
+</style>
+<style>
+
+#livemark-signs {
+  color: #888;
+  border-top: 1px solid #eaecef;
+  margin-top: 24px;
+  padding-top: 20px;
+  height: 50px;
+}
+
+#livemark-signs .next {
+  float: right;
+}
+
+#livemark-signs a {
+  font-size: 20px;
+  color: currentColor;
+}
+
+#livemark-signs a:hover {
   color: #80b2e6;
 }
 
@@ -1583,6 +1669,82 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 </style>
 <style>
 
+#livemark-search {
+  position: fixed;
+  left: 30px;
+  width: 240px;
+  bottom: 20px;
+  z-index:100;
+  visibility: hidden;
+}
+
+@media only screen and (min-width: 992px) {
+  #livemark-search {
+    visibility: visible;
+  }
+}
+
+#livemark-search-input {
+  width: 100%;
+  outline: none;
+  font-size: 20px;
+  padding: 7px 10px;
+  border-radius: 20px;
+  border: solid 1px #ddd;
+  box-shadow: 0px 7px 10px #eee;
+  color: #888;
+}
+
+#livemark-search-input::placeholder {
+  color: #888;
+}
+
+#livemark-search-input::-webkit-search-decoration,
+#livemark-search-input::-webkit-search-cancel-button,
+#livemark-search-input::-webkit-search-results-button,
+#livemark-search-input::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}
+
+#livemark-search-output {
+  visibility: hidden;
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  border: solid 1px #ddd;
+  box-shadow: 0px 7px 10px #eee;
+  background: white;
+  margin-bottom: 10px;
+}
+
+#livemark-search-output ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#livemark-search-output li.active {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#livemark-search-output a {
+  color: #5CC820;
+  text-decoration: underline;
+}
+
+.livemark-search-found {
+  background-color: #5CC820;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+</style>
+<style>
+
 .livemark-video {
   padding-bottom: 10px;
 }
@@ -1596,10 +1758,25 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
   <ul>
     <li>
       <a class="active" href="/">
-        Livemark
+        Data Packages
       </a>
     </li>
   </ul>
+</div>
+
+<div id="livemark-pages">
+  <ul class="primary">
+        <li class="primary  active">
+      <a href="/index.html" class="primary">
+        Data Packages
+      </a>
+          </li>
+        <li class="primary  ">
+      <a href="/data.html" class="primary">
+        Data Collection
+      </a>
+          </li>
+      </ul>
 </div>
 
 <div id="livemark-topics">
@@ -1610,125 +1787,53 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 <div id="livemark-main">
 <div id="livemark-notes">
   Written in <a href="https://livemark.frictionlessdata.io" target="_blank"> Livemark </a><br>
-  (2021-09-22 11:40)
+  (2021-09-24 11:55)
 </div>
 
-<h1>Welcome to Livemark</h1>
-<blockquote>
-<p>Edit <code>index.md</code> file to explore Livemark's features or just remove everything to start from a scratch.</p>
-</blockquote>
-<p>It's a template document created automatically to introduce Livemark. We will list here core <a href="https://livemark.frictionlessdata.io/">Livemark</a> features and you can play with theme live editing the document. It's possible to use any standard Markdown features as well.</p>
-<h2>Logic</h2>
-<p>We can pre-process our markdown file using <a href="https://jinja.palletsprojects.com/">Jinja</a>:</p>
-<ul>
-<li>Volkswagen Vento: $785</li>
-<li>Hyundai Verna: $774</li>
-<li>Skoda Rapid: $756</li>
-<li>Suzuki Ciaz: $725</li>
-<li>Renault Scala: $724</li>
-</ul>
-<h2>Table</h2>
-<p>We can visualize our data as a table using <a href="https://handsontable.com/">HandsOnTable</a>:</p>
-<div class="livemark-table">
-  <div id="livemark-table-1">
-  </div>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  const spec = JSON.parse('{"data": [["Volkswagen", "Vento", 785, "16.1", 104, "Sedan"], ["Hyundai", "Verna", 774, "17.4", 106, "Sedan"], ["Skoda", "Rapid", 756, "15.0", 104, "Sedan"], ["Suzuki", "Ciaz", 725, "20.7", 91, "Sedan"], ["Renault", "Scala", 724, "16.9", 98, "Sedan"], ["Suzuki", "SX4", 715, "16.5", 103, "Sedan"], ["Fiat", "Linea", 700, "15.7", 112, "Sedan"], ["Nissan", "Sunny", 699, "16.9", 98, "Sedan"], ["Fiat", "Linea Classic", 612, "14.9", 89, "Sedan"], ["Toyota", "Etios", 603, "16.8", 89, "Sedan"], ["San", "Storm", 595, "16.0", 59, "Sedan"], ["Chevrolet", "Sail", 551, "18.2", 82, "Sedan"], ["Volkswagen", "Polo", 535, "16.5", 74, "Hatchback"], ["Hyundai", "i20", 523, "18.6", 82, "Hatchback"], ["Honda", "Amaze", 519, "18.0", 87, "Sedan"], ["Suzuki", "Swift DZire", 508, "19.1", 86, "Sedan"], ["Ford", "Classic", 506, "14.1", 100, "Sedan"], ["Skoda", "Fabia", 503, "16.4", 75, "Hatchback"], ["Toyota", "Etios Liva", 500, "17.7", 79, "Hatchback"], ["Fiat", "Punto Evo", 499, "15.8", 67, "Hatchback"], ["Tata", "Indigo", 499, "14.0", 65, "Sedan"], ["Hyundai", "Xcent", 496, "19.1", 82, "Sedan"], ["Tata", "Zest", 481, "17.6", 89, "Sedan"], ["Chevrolet", "Sail Hatchback", 468, "18.2", 82, "Hatchback"], ["Suzuki", "Swift", 462, "20.4", 83, "Hatchback"], ["Renault", "Pulse", 446, "18.0", 74, "Hatchback"], ["Suzuki", "Ritz", 442, "18.5", 86, "Hatchback"], ["Chevrolet", "Beat", 421, "18.6", 79, "Hatchback"], ["Honda", "Brio", 421, "19.4", 87, "Hatchback"], ["Hyundai", "i10", 418, "19.8", 68, "Hatchback"], ["Ford", "Figo", 414, "15.3", 70, "Hatchback"], ["Nissan", "Micra", 413, "19.5", 67, "Hatchback"], ["Suzuki", "Celerio", 392, "23.1", 67, "Hatchback"], ["Suzuki", "Wagon-R", 363, "20.5", 67, "Hatchback"], ["Volkswagen", "Up", 360, "21.0", 74, "Hatchback"], ["Chevrolet", "Spark", 345, "16.2", 62, "Hatchback"], ["Suzuki", "Estilo", 338, "19.0", 67, "Hatchback"], ["Suzuki", "Alto", 315, "24.1", 67, "Hatchback"], ["Nissan", "Datsun GO", 312, "20.6", 67, "Hatchback"], ["Hyundai", "EON", 302, "21.1", 55, "Hatchback"], ["Suzuki", "Alto 800", 248, "22.7", 47, "Hatchback"], ["Tata", "Nano", 199, "23.9", 38, "Hatchback"]], "maxRows": 10, "filters": true, "dropdownMenu": true, "columnSorting": {"initialConfig": {"column": 2, "sortOrder": "desc"}}, "width": 600, "licenseKey": "non-commercial-and-evaluation", "colHeaders": ["brand", "model", "price", "kmpl", "bhp", "type"]}')
-  const elem = document.getElementById('livemark-table-1')
-  new Handsontable(elem, spec)
-});
-</script>
-<h2>Chart</h2>
-<p>Another option is to draw a chart using <a href="https://vega.github.io/vega-lite/">Vega</a>:</p>
-<div class="livemark-chart" style="overflow-x: auto">
-  <div id="livemark-chart-1">
-  </div>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-  const spec = JSON.parse('{"data": {"url": "https://raw.githubusercontent.com/frictionlessdata/livemark/main/data/cars.csv"}, "mark": "circle", "selection": {"brush": {"type": "interval"}}, "encoding": {"x": {"type": "quantitative", "field": "kmpl", "scale": {"domain": [12, 25]}}, "y": {"type": "quantitative", "field": "price", "scale": {"domain": [100, 900]}}, "color": {"condition": {"selection": "brush", "field": "type", "type": "nominal"}, "value": "grey"}, "size": {"type": "quantitative", "field": "bhp"}}, "width": 500, "height": 300}')
-  const elem = '#livemark-chart-1'
-  vegaEmbed(elem, spec)
-})
-</script>
-<h2>Script</h2>
-<p>Moreover, we can execute scripts in <a href="https://www.python.org/">Python</a>/<a href="https://www.gnu.org/software/bash/">Bash</a>:</p>
-<pre><code class="language-python">for number in range(1, 6):
-    print(f'Hello World #{number}!')
-</code></pre>
+<h1>Data Packages</h1>
 
-<pre><code class="language-markup">Hello World #1!
-Hello World #2!
-Hello World #3!
-Hello World #4!
-Hello World #5!</code></pre>
-<h2>Markup</h2>
-<p>Markdown is not enough? Finally, let's add some markup with <a href="https://getbootstrap.com/">Bootstrap</a>:</p>
-<div style="max-width: 600px">
-<div class="container">
-<div class="row">
-<div class="col-sm">
-  <div class="livemark-markdown"><p><img src="https://livemark.frictionlessdata.io/assets/data-package.png" alt="Package"></p>
-</div>
-  <div class="text-center">
-  <p><strong>Data Package</strong></p>
-  <p>A simple container format for describing a coherent collection of data in a single package.</p>
-  </div>
-</div>
-<div class="col-sm">
-  <div class="livemark-markdown"><p><img src="https://livemark.frictionlessdata.io/assets/data-resource.png" alt="Resource"></p>
-</div>
-  <div class="text-center">
-  <p><strong>Data Resource</strong></p>
-  <p>A simple format to describe and package a single data resource such as a individual table or file.</p>
-  </div>
-</div>
-<div class="col-sm">
-  <div class="livemark-markdown"><p><img src="https://livemark.frictionlessdata.io/assets/table-schema.png" alt="Schema"></p>
-</div>
-  <div class="text-center">
-  <p><strong>Table Schema</strong></p>
-  <p>A simple format to declare a schema for tabular data. The schema is designed to be expressible in JSON.</p>
-  </div>
-</div>
-</div>
-</div>
+<div id="livemark-signs">
+  <div>
+        <div class="next">
+      <a href="/data.html">
+        Data Collection »
+      </a>
+    </div>
+            <div class="prev">
+      <a href="/data.html">
+        « Data Collection
+      </a>
+    </div>
+      </div>
 </div>
 </div>
 <div id="livemark-right">
 
 <div id="livemark-rating">
-  <iframe src="https://ghbtns.com/github-btn.html?user=frictionlessdata&amp;repo=livemark&amp;type=star&amp;count=true&amp;size=large" width="160px" height="30px" title="GitHub">
+  <iframe src="https://ghbtns.com/github-btn.html?user=roll&amp;repo=data-packages&amp;type=star&amp;count=true&amp;size=large" width="160px" height="30px" title="GitHub">
   </iframe>
 </div>
 
 <div id="livemark-about">
   <div>
-    It's a template document created automatically to introduce Livemark
+    None
   </div>
 </div>
 
 <div id="livemark-links">
   <ul>
         <li>
-      <a href="https://livemark.frictionlessdata.io/" target="_blank">
-        Documentation
-      </a>
-    </li>
-        <li>
-      <a href="https://github.com/frictionlessdata/livemark/issues" target="_blank">
+      <a href="https://github.com/roll/data-packages/issues" target="_blank">
         Report
       </a>
     </li>
         <li>
-      <a href="https://github.com/frictionlessdata/livemark/fork" target="_blank">
+      <a href="https://github.com/roll/data-packages/fork" target="_blank">
         Fork
       </a>
     </li>
         <li>
-      <a href="https://github.com/frictionlessdata/livemark/edit/main/index.md" target="_blank">
+      <a href="https://github.com/roll/data-packages/edit/main/index.md" target="_blank">
         Edit
       </a>
     </li>
@@ -1777,10 +1882,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-<script src="https://unpkg.com/vega@5.20.2/build/vega.min.js"></script>
-<script src="https://unpkg.com/vega-lite@5.1.0/build/vega-lite.min.js"></script>
-<script src="https://unpkg.com/vega-embed@6.18.2/build/vega-embed.min.js"></script>
-<script src="https://unpkg.com/handsontable@9.0.0/dist/handsontable.min.js"></script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const groups = $("#livemark-pages li.group");
+  for (const group of groups) {
+    $(group)
+      .children("a")
+      .click((ev) => {
+        ev.preventDefault();
+        $(group).toggleClass("active");
+        // $(group).find(".fa").toggleClass("fa-chevron-right");
+        // $(group).find(".fa").toggleClass("fa-chevron-down");
+      });
+  }
+});
+
+</script>
 <script src="https://unpkg.com/tocbot@4.12.3/dist/tocbot.min.js"></script>
 <script>
 
@@ -2002,5 +2120,104 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+<script src="https://unpkg.com/lunr@2.3.9/lunr.min.js"></script>
+<script src="https://unpkg.com/jquery-highlight@3.5.0/jquery.highlight.js"></script>
+<script src="https://unpkg.com/jquery.scrollto@2.1.3/jquery.scrollTo.js"></script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const prepare = () => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const query = searchParams.get('query') || ''
+    if (query.length >= 3) {
+      searchInput.value = query
+    }
+  }
+  const search = () => {
+    unhighlight()
+    query = searchInput.value
+    searchOutput.innerHTML = ''
+    searchOutput.style.visibility = 'hidden'
+    const searchParams = new URLSearchParams(window.location.search);
+    if (query.length < 3) return
+    const results = searchIndex.search(query)
+    if (!results.length) return
+    searchParams.set('query', query)
+    const newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+    history.pushState(null, '', newRelativePathQuery);
+    const elements = []
+    for (const result of results) {
+      const item = searchItems[result.ref]
+      const link = `/${item.path}.html`
+      const cls = window.location.pathname === link ? 'class="active"' : ''
+      elements.push(`<li ${cls}><a href="${link}?query=${query}">${item.name}</a></li>`)
+    }
+    searchOutput.innerHTML = `<ul>\n${elements.join('\n')}\n</ul>`
+    searchOutput.style.visibility = 'visible'
+    highlight()
+  }
+  const highlight = () => {
+    const stem = lunr.stemmer(new lunr.Token(query)).str
+    $('#livemark-main').highlight(stem, {className: 'livemark-search-found'});
+    setTimeout(() => {
+      $(window).scrollTo($('.livemark-search-found').first(), 1000)
+    }, 1000)
+  }
+  const unhighlight = () => {
+    $('#livemark-main').unhighlight({className: 'livemark-search-found'});
+  }
+  const searchItems = {
+          'index': {
+          'name': 'Data Packages',
+          'path': 'index',
+          'text': "# Data Packages",
+      },
+          'data': {
+          'name': 'Data Collection',
+          'path': 'data',
+          'text': "# Data Collection",
+      },
+          'index': {
+          'name': 'Data Packages',
+          'path': 'index',
+          'text': "# Data Packages",
+      },
+          'data': {
+          'name': 'Data Collection',
+          'path': 'data',
+          'text': "# Data Collection",
+      },
+          'index': {
+          'name': 'Data Packages',
+          'path': 'index',
+          'text': "# Data Packages",
+      },
+          'data': {
+          'name': 'Data Collection',
+          'path': 'data',
+          'text': "# Data Collection",
+      },
+      };
+  const searchIndex = lunr(function () {
+    this.ref("path")
+    this.field("name", { boost: 10 })
+    this.field("text")
+    for (const item of Object.values(searchItems)) {
+      this.add(item)
+    }
+  });
+  const searchOutput = document.getElementById('livemark-search-output')
+  const searchInput = document.getElementById('livemark-search-input')
+  searchInput.addEventListener('input', search)
+  prepare()
+  search()
+});
+
+</script>
+
+<div id="livemark-search">
+  <div id="livemark-search-output"></div>
+  <input id="livemark-search-input" type="search" placeholder="Search...">
+</div>
 </body>
 </html>

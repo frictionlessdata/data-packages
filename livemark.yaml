@@ -1,0 +1,10 @@
+brand:
+  text: Data Packages
+github:
+  # TODO: update to frictionless
+  user: roll
+  repo: data-packages
+pages:
+  items:
+    - path: index
+    - path: data
