@@ -1829,7 +1829,7 @@ $ livemark build # to build in non-interactive mode
 <div id="livemark-right">
 
 <div id="livemark-rating">
-  <iframe src="https://ghbtns.com/github-btn.html?user=roll&amp;repo=data-packages&amp;type=star&amp;count=true&amp;size=large" width="160px" height="30px" title="GitHub">
+  <iframe src="https://ghbtns.com/github-btn.html?user=frictionlessdata&amp;repo=data-packages&amp;type=star&amp;count=true&amp;size=large" width="160px" height="30px" title="GitHub">
   </iframe>
 </div>
 
@@ -1842,17 +1842,17 @@ $ livemark build # to build in non-interactive mode
 <div id="livemark-links">
   <ul>
         <li>
-      <a href="https://github.com/roll/data-packages/issues" target="_blank">
+      <a href="https://github.com/frictionlessdata/data-packages/issues" target="_blank">
         Report
       </a>
     </li>
         <li>
-      <a href="https://github.com/roll/data-packages/fork" target="_blank">
+      <a href="https://github.com/frictionlessdata/data-packages/fork" target="_blank">
         Fork
       </a>
     </li>
         <li>
-      <a href="https://github.com/roll/data-packages/edit/main/contrib.md" target="_blank">
+      <a href="https://github.com/frictionlessdata/data-packages/edit/main/contrib.md" target="_blank">
         Edit
       </a>
     </li>
@@ -2194,7 +2194,7 @@ document.addEventListener("DOMContentLoaded", function () {
           'data': {
           'name': 'Data Collection',
           'path': 'data',
-          'text': "# Data Collection ## Search packages First of all, we need to find all the data packages on Github. We\u0027re going to look at all the repos having `datapackage.json` in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository\u0027s stargazers count and save it to the CSV file: ```bash $ python code/search.py ``` ```python file code/search.py ``` ## Render packages After we have the `packages.csv` file ```bash $ python code/render.py ``` ```python file code/render.py ```",
+          'text': "# Data Collection ## Search packages First of all, we need to find all the data packages on Github. We\u0027re going to look at all the repos having `datapackage.json` in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository\u0027s stargazers count and save it to the CSV file: ```bash $ python code/search.py ``` ```python file code/search.py ``` ## Render packages After we have the `packages.csv` file filled with data packages, we need to render them as Livemark Cards. To achieve this task we will use builtin methods that comes with the Cards plugin: ```bash $ python code/render.py ``` ```python file code/render.py ```",
       },
           'contrib': {
           'name': 'Contributing',

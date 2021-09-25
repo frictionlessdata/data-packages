@@ -1,7 +1,7 @@
 brand:
   text: Data Packages
 github:
-  user: roll
+  user: frictionlessdata
   repo: data-packages
 pages:
   items:
