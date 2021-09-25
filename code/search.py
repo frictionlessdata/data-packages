@@ -33,18 +33,18 @@ def fetch_source():
             break
         for item in items:
             repo = item.repository
-            file = {}
-            file["user"] = repo.owner.login
-            file["repo"] = repo.name
-            file["branch"] = repo.default_branch
-            file["path"] = item.path
-            file["stars"] = repo.stargazers_count
-            file["download_url"] = item.download_url
+            data = {}
+            data["user"] = repo.owner.login
+            data["repo"] = repo.name
+            data["branch"] = repo.default_branch
+            data["path"] = item.path
+            data["stars"] = repo.stargazers_count
+            data["download_url"] = item.download_url
             try:
-                file["content"] = json.dumps(json.loads(item.decoded_content))
+                data["content"] = json.dumps(json.loads(item.decoded_content))
             except json.JSONDecodeError:
                 continue
-            source.append(file)
+            source.append(data)
         print(f"Found items: {len(source)}")
     return source
 

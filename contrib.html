@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="None">
-<meta name="keywords" content="data,packages">
+<meta name="description" content="To start working on the project clone the repository and enter its directory:">
+<meta name="keywords" content="contributing">
 <link rel="icon" href="None">
-<title>Data Packages</title>
+<title>Contributing | Data Packages</title>
 <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/prismjs@1.23.0/themes/prism.css">
@@ -1766,7 +1766,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 
 <div id="livemark-pages">
   <ul class="primary">
-        <li class="primary  active">
+        <li class="primary  ">
       <a href="/index.html" class="primary">
         Data Packages
       </a>
@@ -1776,7 +1776,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
         Data Collection
       </a>
           </li>
-        <li class="primary  ">
+        <li class="primary  active">
       <a href="/contrib.html" class="primary">
         Contributing
       </a>
@@ -1792,19 +1792,38 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 <div id="livemark-main">
 <div id="livemark-notes">
   Written in <a href="https://livemark.frictionlessdata.io" target="_blank"> Livemark </a><br>
-  (2021-09-24 11:55)
+  (2021-09-25 10:58)
 </div>
 
-<h1>Data Packages</h1>
+<h1>Contributing</h1>
+<p>To start working on the project clone the repository and enter its directory:</p>
+<pre><code class="language-bash">$ git clone git@github.com:frictionlessdata/data-packages.git
+$ cd data-packages
+</code></pre>
+<h2>Install</h2>
+<p>Run the following script to initiate a virtual environment and install the dependencies:</p>
+<pre><code class="language-bash">$ bash install.sh
+</code></pre>
+<h2>Collect</h2>
+<p>To collect the data use the data collection script (run only if you want to update the data):</p>
+<pre><code class="language-bash">$ bash collect.sh
+</code></pre>
+<h2>Build</h2>
+<p>To build the project use one of these Livemark commands:</p>
+<pre><code class="language-bash">$ livemark start # to build and start a live-reload server
+$ livemark build # to build in non-interactive mode
+</code></pre>
+<h2>Deploy</h2>
+<p>The project is deployed automatically to Github Pages on every push to "main". It means that if one propose a change in a PR it will be deployed automatically after merging.</p>
 
 <div id="livemark-signs">
   <div>
-        <div class="next">
+            <div class="prev">
       <a href="/data.html">
-        Data Collection »
+        « Data Collection
       </a>
     </div>
-          </div>
+      </div>
 </div>
 </div>
 <div id="livemark-right">
@@ -1816,7 +1835,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 
 <div id="livemark-about">
   <div>
-    None
+    To start working on the project clone the repository and enter its directory:
   </div>
 </div>
 
@@ -1833,7 +1852,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
       </a>
     </li>
         <li>
-      <a href="https://github.com/roll/data-packages/edit/main/index.md" target="_blank">
+      <a href="https://github.com/roll/data-packages/edit/main/contrib.md" target="_blank">
         Edit
       </a>
     </li>
@@ -2175,12 +2194,12 @@ document.addEventListener("DOMContentLoaded", function () {
           'data': {
           'name': 'Data Collection',
           'path': 'data',
-          'text': "# Data Collection ## Search packages First of all, we need to find all the data packages on Github. We\u0027re going to look at all the repos having `datapackage.json` in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository\u0027s stars and save to the CSV file: ```python file code/search.py ``` ## Render packages ```python file code/render.py ```",
+          'text': "# Data Collection ## Search packages First of all, we need to find all the data packages on Github. We\u0027re going to look at all the repos having `datapackage.json` in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository\u0027s stargazers count and save it to the CSV file: ```bash $ python code/search.py ``` ```python file code/search.py ``` ## Render packages After we have the `packages.csv` file ```bash $ python code/render.py ``` ```python file code/render.py ```",
       },
           'contrib': {
           'name': 'Contributing',
           'path': 'contrib',
-          'text': "# Contributing To start working on the project clone the repository and enter its directory: ```bash $ git clone git@github.com:frictionlessdata/data-packages.git $ cd data-packages ``` ## Install Run the following script to initiate a virtual environment and install the dependencies: ``` $ bash install.sh ``` ## Build To build the site run the building script: ``` $ bash build.sh ``` You can also run the script inside using Python one by one.",
+          'text': "# Contributing To start working on the project clone the repository and enter its directory: ```bash $ git clone git@github.com:frictionlessdata/data-packages.git $ cd data-packages ``` ## Install Run the following script to initiate a virtual environment and install the dependencies: ```bash $ bash install.sh ``` ## Collect To collect the data use the data collection script (run only if you want to update the data): ```bash $ bash collect.sh ``` ## Build To build the project use one of these Livemark commands: ```bash $ livemark start # to build and start a live-reload server $ livemark build # to build in non-interactive mode ``` ## Deploy The project is deployed automatically to Github Pages on every push to \"main\". It means that if one propose a change in a PR it will be deployed automatically after merging.",
       },
       };
   const searchIndex = lunr(function () {

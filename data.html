@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="None">
-<meta name="keywords" content="data,packages">
+<meta name="description" content="First of all, we need to find all the data packages on Github. We're going to look at all the repos having `datapackage.json` in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository's stargazers count and save it to the CSV file:">
+<meta name="keywords" content="data,collection">
 <link rel="icon" href="None">
-<title>Data Packages</title>
+<title>Data Collection | Data Packages</title>
 <link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/prismjs@1.23.0/themes/prism.css">
@@ -1766,12 +1766,12 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 
 <div id="livemark-pages">
   <ul class="primary">
-        <li class="primary  active">
+        <li class="primary  ">
       <a href="/index.html" class="primary">
         Data Packages
       </a>
           </li>
-        <li class="primary  ">
+        <li class="primary  active">
       <a href="/data.html" class="primary">
         Data Collection
       </a>
@@ -1792,19 +1792,108 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 <div id="livemark-main">
 <div id="livemark-notes">
   Written in <a href="https://livemark.frictionlessdata.io" target="_blank"> Livemark </a><br>
-  (2021-09-24 11:55)
+  (2021-09-25 11:00)
 </div>
 
-<h1>Data Packages</h1>
+<h1>Data Collection</h1>
+<h2>Search packages</h2>
+<p>First of all, we need to find all the data packages on Github. We're going to look at all the repos having <code>datapackage.json</code> in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository's stargazers count and save it to the CSV file:</p>
+<pre><code class="language-bash">$ python code/search.py
+</code></pre>
+<pre><code class="language-python">import os
+import json
+import time
+from dotenv import load_dotenv
+from frictionless import Resource, transform, steps
+from github import Github, RateLimitExceededException
+
+
+load_dotenv()
+PAUSE = 1
+RETRY = 10
+QUERY = "resources filename:datapackage.json path:/"
+github = Github(os.environ["GITHUB_TOKEN"], per_page=100)
+
+
+# Source
+
+
+def fetch_source():
+    source = []
+    result = github.search_code(QUERY)
+    time.sleep(PAUSE)
+    page = 0
+    while True:
+        try:
+            items = result.get_page(page)
+        except RateLimitExceededException:
+            time.sleep(RETRY)
+            continue
+        time.sleep(PAUSE)
+        page += 1
+        if not items:
+            break
+        for item in items:
+            repo = item.repository
+            data = {}
+            data["user"] = repo.owner.login
+            data["repo"] = repo.name
+            data["branch"] = repo.default_branch
+            data["path"] = item.path
+            data["stars"] = repo.stargazers_count
+            data["download_url"] = item.download_url
+            try:
+                data["content"] = json.dumps(json.loads(item.decoded_content))
+            except json.JSONDecodeError:
+                continue
+            source.append(data)
+        print(f"Found items: {len(source)}")
+    return source
+
+
+# General
+
+
+transform(
+    Resource(fetch_source()),
+    steps=[
+        steps.row_sort(field_names=["stars"], reverse=True),
+        steps.table_write(path="data/packages.csv"),
+    ],
+)
+</code></pre><h2>Render packages</h2>
+<p>After we have the <code>packages.csv</code> file filled with data packages, we need to render them as Livemark Cards. To achieve this task we will use builtin methods that comes with the Cards plugin:</p>
+<pre><code class="language-bash">$ python code/render.py
+</code></pre>
+<pre><code class="language-python">from frictionless import Resource, Package
+from livemark.plugins.cards import CardsPlugin
+
+
+# General
+
+
+with Resource("data/packages.csv") as resource:
+    CardsPlugin.delete_cards()
+    for row in resource:
+        code = f"{row['user']}-{row['repo']}"
+        package = Package(row["content"])
+        CardsPlugin.create_card("cards/package.md", package=package, code=code)
+        break
+</code></pre>
 
 <div id="livemark-signs">
   <div>
         <div class="next">
-      <a href="/data.html">
-        Data Collection »
+      <a href="/contrib.html">
+        Contributing »
       </a>
     </div>
-          </div>
+            <div class="prev">
+      <a href="/index.html">
+        « Data Packages
+      </a>
+    </div>
+      </div>
 </div>
 </div>
 <div id="livemark-right">
@@ -1816,7 +1905,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 
 <div id="livemark-about">
   <div>
-    None
+    First of all, we need to find all the data packages on Github
   </div>
 </div>
 
@@ -1833,7 +1922,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
       </a>
     </li>
         <li>
-      <a href="https://github.com/roll/data-packages/edit/main/index.md" target="_blank">
+      <a href="https://github.com/roll/data-packages/edit/main/data.md" target="_blank">
         Edit
       </a>
     </li>
@@ -2175,12 +2264,12 @@ document.addEventListener("DOMContentLoaded", function () {
           'data': {
           'name': 'Data Collection',
           'path': 'data',
-          'text': "# Data Collection ## Search packages First of all, we need to find all the data packages on Github. We\u0027re going to look at all the repos having `datapackage.json` in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository\u0027s stars and save to the CSV file: ```python file code/search.py ``` ## Render packages ```python file code/render.py ```",
+          'text': "# Data Collection ## Search packages First of all, we need to find all the data packages on Github. We\u0027re going to look at all the repos having `datapackage.json` in the root directory. Github Search API has quite strict querying limits so we have to use different techniques to avoid rate limit errors. As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository\u0027s stargazers count and save it to the CSV file: ```bash $ python code/search.py ``` ```python file code/search.py ``` ## Render packages After we have the `packages.csv` file filled with data packages, we need to render them as Livemark Cards. To achieve this task we will use builtin methods that comes with the Cards plugin: ```bash $ python code/render.py ``` ```python file code/render.py ```",
       },
           'contrib': {
           'name': 'Contributing',
           'path': 'contrib',
-          'text': "# Contributing To start working on the project clone the repository and enter its directory: ```bash $ git clone git@github.com:frictionlessdata/data-packages.git $ cd data-packages ``` ## Install Run the following script to initiate a virtual environment and install the dependencies: ``` $ bash install.sh ``` ## Build To build the site run the building script: ``` $ bash build.sh ``` You can also run the script inside using Python one by one.",
+          'text': "# Contributing To start working on the project clone the repository and enter its directory: ```bash $ git clone git@github.com:frictionlessdata/data-packages.git $ cd data-packages ``` ## Install Run the following script to initiate a virtual environment and install the dependencies: ```bash $ bash install.sh ``` ## Collect To collect the data use the data collection script (run only if you want to update the data): ```bash $ bash collect.sh ``` ## Build To build the project use one of these Livemark commands: ```bash $ livemark start # to build and start a live-reload server $ livemark build # to build in non-interactive mode ``` ## Deploy The project is deployed automatically to Github Pages on every push to \"main\". It means that if one propose a change in a PR it will be deployed automatically after merging.",
       },
       };
   const searchIndex = lunr(function () {
