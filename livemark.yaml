@@ -1,5 +1,7 @@
 brand:
   text: Data Packages
+about:
+  text: A livemark listing data packages hosted on Github
 github:
   user: frictionlessdata
   repo: data-packages
