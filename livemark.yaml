@@ -5,6 +5,12 @@ about:
 github:
   user: frictionlessdata
   repo: data-packages
+topics:
+  selector: h2
+site:
+  favicon: assets/data-package.png
+  styles:
+    - style.css
 pages:
   items:
     - path: index

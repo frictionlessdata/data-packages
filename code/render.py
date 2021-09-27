@@ -1,4 +1,4 @@
-from frictionless import Resource, Package, FrictionlessException
+from frictionless import Resource, Package
 from livemark.plugins.cards import CardsPlugin
 
 
@@ -8,13 +8,6 @@ from livemark.plugins.cards import CardsPlugin
 with Resource("data/packages.csv") as resource:
     CardsPlugin.delete_cards()
     for row in resource:
-
-        # Package
-        try:
-            package = Package(row["content"])
-        except FrictionlessException:
-            continue
-
-        # Card
-        code = f"{row['user']}-{row['repo']}"
-        CardsPlugin.create_card("cards/package.md", package=package, code=code)
+        code = row["code"]
+        package = Package(row["content"])
+        CardsPlugin.create_card("cards/package.md", code=code, package=package)

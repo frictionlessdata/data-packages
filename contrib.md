@@ -12,7 +12,8 @@ $ cd data-packages
 Run the following script to initiate a virtual environment and install the dependencies:
 
 ```bash
-$ bash install.sh
+$ make install
+$ editor .env # add your Github Token
 ```
 
 ## Collect
@@ -20,7 +21,7 @@ $ bash install.sh
 To collect the data use the data collection script (run only if you want to update the data):
 
 ```bash
-$ bash collect.sh
+$ make collect
 ```
 
 ## Build

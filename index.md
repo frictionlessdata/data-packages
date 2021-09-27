@@ -2,12 +2,32 @@
 
 ## Introduction
 
-text here
+**Data Package** is a simple container format for describing a coherent collection of data in a single package. We have [collected](data.html) and sorted by the stars count all the data packages available as repositories on Github. Read more about [Data Packages](https://specs.frictionlessdata.io/guides/data-package) and [Frictionless Data](https://frictionlessdata.io). If you are interested in contributing please follow this [guide](contrib.html).
 
-## Catalogue
+## Datasets
 
+```html markup
 {% for row in frictionless.extract('data/packages.csv') %}
-**{{ row.user }}/{{ row.repo }}**
-[Link](#card={{ row.user }}-{{ row.repo }})
-
+<div class="package">
+  <div class="package-content">
+    <h3>
+      <a href="#card={{ row.code }}" style="color: black">
+        {{ row.title or row.code }}
+      </a>
+    </h3>
+    <p>{{ row.description or 'Description is not provided'}}</p>
+    <p>
+      <a class="package-content-link" href="https://github.com/{{ row.user}}/{{row.repo }}" target="_blank">
+        Github <span class="fa fa-external-link-alt"></span>
+      </a>
+    </p>
+  </div>
+  <div class="package-stars">
+    <span class="fa-stack fa-2x">
+      <i class="fas fa-stack-2x fa-star fa-inverse package-stars-icon"></i>
+      <i class="fas fa-stack-1x package-stars-count">{{ row.stars }}</i>
+    </span>
+  </div>
+</div>
 {% endfor %}
+```

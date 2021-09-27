@@ -2,8 +2,9 @@ import os
 import json
 import time
 from dotenv import load_dotenv
-from frictionless import Resource, transform, steps
 from github import Github, RateLimitExceededException
+from frictionless import Package, Resource, transform, steps
+from frictionless import FrictionlessException
 
 
 load_dotenv()
@@ -34,6 +35,7 @@ def fetch_source():
         for item in items:
             repo = item.repository
             data = {}
+            data["code"] = "-".join([repo.owner.login, repo.name])
             data["user"] = repo.owner.login
             data["repo"] = repo.name
             data["branch"] = repo.default_branch
@@ -41,11 +43,15 @@ def fetch_source():
             data["stars"] = repo.stargazers_count
             data["download_url"] = item.download_url
             try:
-                data["content"] = json.dumps(json.loads(item.decoded_content))
-            except json.JSONDecodeError:
+                package = Package(json.loads(item.decoded_content))
+                data["title"] = package.title
+                data["description"] = package.description_text
+                data["content"] = json.dumps(package.to_dict())
+            except (json.JSONDecodeError, FrictionlessException):
                 continue
             source.append(data)
         print(f"Found items: {len(source)}")
+        break
     return source
 
 
