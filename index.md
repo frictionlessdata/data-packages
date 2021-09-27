@@ -6,7 +6,7 @@
 
 ```yaml remark
 type: warning
-text: Currently, some data packages might be missing. See this <a href="https://github.com/frictionlessdata/data-packages/issues/1">issue</a> for more information.
+text: Currently, some datasets might be missing. See this <a href="https://github.com/frictionlessdata/data-packages/issues/1">issue</a> for more information.
 ```
 
 ## Datasets
