@@ -1,0 +1,58 @@
+<h1>A complete list of schematic specifications for the resources (TSV table files) that will be used to represent C2M2 DCC metadata prior to ingest into the C2M2 database system</h1>
+<div class="livemark-package">
+  <h3>A complete list of schematic specifications for the resources (TSV table files) that will be used to represent C2M2 DCC metadata prior to ingest into the C2M2 database system</h3>
+  <p>No description provided</p>
+  <h4>Resources</h4>
+      <h5>file</h5>
+    <p>A stable digital asset</p>
+      <h5>biosample</h5>
+    <p>A tissue sample or other physical specimen</p>
+      <h5>subject</h5>
+    <p>A biological entity from which a C2M2 biosample can be generated</p>
+      <h5>primary_dcc_contact</h5>
+    <p>One primary contact person for the Common Fund data coordinating center (DCC, identified by the given project foreign key) that produced this C2M2 instance</p>
+      <h5>project</h5>
+    <p>A node in the C2M2 project hierarchy subdividing all resources described by this DCC's C2M2 metadata</p>
+      <h5>project_in_project</h5>
+    <p>Association between a child project and its parent</p>
+      <h5>collection</h5>
+    <p>A grouping of C2M2 files, biosamples and/or subjects</p>
+      <h5>collection_in_collection</h5>
+    <p>Association between a containing collection (superset) and a contained collection (subset)</p>
+      <h5>file_describes_collection</h5>
+    <p>Association between a summary file and an entire collection described by that file</p>
+      <h5>collection_defined_by_project</h5>
+    <p>(Shallow) association between a collection and a project that defined it</p>
+      <h5>file_in_collection</h5>
+    <p>Association between a file and a (containing) collection</p>
+      <h5>biosample_in_collection</h5>
+    <p>Association between a biosample and a (containing) collection</p>
+      <h5>subject_in_collection</h5>
+    <p>Association between a subject and a (containing) collection</p>
+      <h5>file_describes_biosample</h5>
+    <p>Association between a biosample and a file containing information about that biosample</p>
+      <h5>file_describes_subject</h5>
+    <p>Association between a subject and a file containing information about that subject</p>
+      <h5>biosample_from_subject</h5>
+    <p>Association between a biosample and its source subject</p>
+      <h5>biosample_disease</h5>
+    <p>Association between a C2M2 biosample and a disease known to be associated with that biosample</p>
+      <h5>subject_disease</h5>
+    <p>Association between a C2M2 subject and a disease positively identified in that subject</p>
+      <h5>subject_role_taxonomy</h5>
+    <p>Trinary association linking IDs representing (1) a subject, (2) a subject_role (a named organism-level constituent component of a subject, like 'host', 'pathogen', 'endosymbiont', 'taxon detected inside a microbiome subject', etc.) and (3) a taxonomic label (which is hereby assigned to this particular subject_role within this particular subject)</p>
+      <h5>assay_type</h5>
+    <p>List of Ontology for Biomedical Investigations (OBI) CV terms used to describe types of experiment that generate C2M2 biosamples or results stored in C2M2 files</p>
+      <h5>ncbi_taxonomy</h5>
+    <p>List of NCBI Taxonomy Database IDs identifying taxa used to describe C2M2 subjects</p>
+      <h5>anatomy</h5>
+    <p>List of Uber-anatomy ontology (UBERON) CV terms used to locate the origin of a C2M2 biosample within the physiology of its source or host organism</p>
+      <h5>file_format</h5>
+    <p>List of EDAM CV 'format:' terms used to describe formats of C2M2 files</p>
+      <h5>data_type</h5>
+    <p>List of EDAM CV 'data:' terms used to describe data in C2M2 files</p>
+      <h5>disease</h5>
+    <p>List of Disease Ontology terms used to describe diseases associated with C2M2 subjects or biosamples</p>
+      <h5>id_namespace</h5>
+    <p>A table listing identifier namespaces registered by the DCC submitting this C2M2 instance</p>
+  </div>

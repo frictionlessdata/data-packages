@@ -51,7 +51,6 @@ def fetch_source():
                 continue
             source.append(data)
         print(f"Found items: {len(source)}")
-        break
     return source
 
 

@@ -1,0 +1,50 @@
+<h1>Human Services Data Specification</h1>
+<div class="livemark-package">
+  <h3>Human Services Data Specification</h3>
+  <p>HSDS describes data about organizations, the services they provide, the locations at which these services can be accessed, and associated details.</p>
+  <h4>Resources</h4>
+      <h5>organization</h5>
+    <p>The organization record is used to provide basic description and details about each organization delivering services. Each service should be linked to the organization responsible for its delivery. One organization may deliver many services.</p>
+      <h5>program</h5>
+    <p>Some organizations organise their services into programs. A program brings together a number of related services.</p>
+      <h5>service</h5>
+    <p>Services are provided by organizations to a range of different groups. Details on where each service is delivered are contained in the services_at_location table.</p>
+      <h5>service_attribute</h5>
+    <p>The services attributes table creates a link between a service and one or more classifications that describe the nature of the service provided.</p>
+      <h5>other_attribute</h5>
+    <p>The other_attributes table creates a link between entities other than service and one or more classifications that describe the entity.</p>
+      <h5>service_at_location</h5>
+    <p>The services at location table creates a link between a service and a specific location.</p>
+      <h5>location</h5>
+    <p>The location tables provides details of the locations where organizations operate. Locations may be virtual, and one organization may have many locations.</p>
+      <h5>phone</h5>
+    <p>The phone table contains details of the telephone numbers are used to contact organizations, services, and locations.</p>
+      <h5>contact</h5>
+    <p>The contact table contains details of the named contacts for services and organizations. Note that in the HSDS data package format, if an individual is the contact for multiple services, their details may be duplicated multiple times in this table, each time with a new identifier, and with the rows containing different service ids.</p>
+      <h5>physical_address</h5>
+    <p>The addresses table contains the physical addresses for locations</p>
+      <h5>postal_address</h5>
+    <p>The postal_address table contains the postal addresses for mail to a certain location. This may differ from the physical location.</p>
+      <h5>schedule</h5>
+    <p>The schedule table contains details of when a service or location is open. Entries are RFC 5545 RRULES.</p>
+      <h5>funding</h5>
+    <p>The funding table describes the sources of funding for a service or organisation</p>
+      <h5>eligibility</h5>
+    <p>The eligibility tables contains details of the eligibility criteria for particular services</p>
+      <h5>service_area</h5>
+    <p>The service_area table contains details of the geographic area for which a service is available.</p>
+      <h5>required_document</h5>
+    <p>The required_document table contains details of any documents that are required in order to access or use services.</p>
+      <h5>payment_accepted</h5>
+    <p>The payment_accepted table contains details of the methods of payment that can be used in order to pay for services</p>
+      <h5>language</h5>
+    <p>The language table contains details of the languages that are spoken at locations or services. This does not include languages which can only be used with interpretation.</p>
+      <h5>accessibility_for_disabilities</h5>
+    <p>The accessibility_for_disabilities table contains details of the arrangements for access to locations for people who have disabilities</p>
+      <h5>taxonomy_term</h5>
+    <p>Each service can be categorized according to one or more taxonomy terms. The taxonomy_term table contains a list of taxonomy terms, their names, and, for hierarchical taxonomies, their structure.</p>
+      <h5>metadata</h5>
+    <p>The metadata table contains a record of the changes that have been made to the data in order to maintain provenance information.</p>
+      <h5>meta_table_description</h5>
+    <p>The meta_table_description table contains metadata about individual tables.</p>
+  </div>
