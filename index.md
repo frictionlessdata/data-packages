@@ -2,7 +2,12 @@
 
 ## Introduction
 
-**Data Package** is a simple container format for describing a coherent collection of data in a single package. We have [collected](data.html) and sorted by the stars count all the data packages available as repositories on Github. Read more about [Data Packages](https://specs.frictionlessdata.io/guides/data-package) and [Frictionless Data](https://frictionlessdata.io). If you are interested in contributing please follow this [guide](contrib.html).
+**Data Package** is a simple container format for describing a coherent collection of data in a single package. We have [collected](data.html) and sorted by the stars count all the data packages available as repositories on Github. Read more about [Data Packages](https://specs.frictionlessdata.io/guides/data-package) and [Frictionless Data](https://frictionlessdata.io). If you are interested in contributing to this livemark please follow this [guide](contrib.html).
+
+```yaml remark
+type: warning
+text: Currently, some data packages might be missing. See this <a href="https://github.com/frictionlessdata/data-packages/issues/1">issue</a> for more information.
+```
 
 ## Datasets
 
