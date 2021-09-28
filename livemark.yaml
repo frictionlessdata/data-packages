@@ -14,5 +14,5 @@ site:
 pages:
   items:
     - path: index
-    - path: data
-    - path: contrib
+    - path: pages/data
+    - path: pages/contrib
