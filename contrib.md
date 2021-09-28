@@ -16,12 +16,12 @@ $ make install
 $ editor .env # add your Github Token
 ```
 
-## Collect
+## Data
 
 To collect the data use the data collection script (run only if you want to update the data):
 
 ```bash
-$ make collect
+$ make data
 ```
 
 ## Build
