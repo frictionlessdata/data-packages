@@ -1174,7 +1174,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 </style>
 <style>
 
-.package {
+.item {
   position: relative;
   border: solid 1px #eee;
   border-radius: 10px;
@@ -1185,25 +1185,25 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
   align-items: center;
 }
 
-.package:nth-child(odd) {
+.item:nth-child(odd) {
   background-color: #EEE8C8;
 }
 
-.package-content {
+.item-content {
   width: 100%;
   border-right: dashed 1px #ccc;
 }
 
-.package-content-link {
+.item-content-link {
   color: grey !important;
 }
 
-.package-stars {
+.item-stars {
   font-size: 24px;
   padding-left: 20px;
 }
 
-.package-stars-count {
+.item-stars-count {
   font-size: 30px;
 }
 
@@ -1828,7 +1828,7 @@ body:not(.with-readability) #livemark-right::-webkit-scrollbar {
 <div id="livemark-main">
 <div id="livemark-notes">
   Written in <a href="https://livemark.frictionlessdata.io" target="_blank"> Livemark </a><br>
-  (2021-09-28 09:23)
+  (2021-09-28 09:35)
 </div>
 
 <h1>Data Collection</h1>
@@ -1854,8 +1854,8 @@ github = Github(os.environ["GITHUB_TOKEN"], per_page=100)
 # Helpers
 
 
-def extract_source():
-    source = []
+def search_packages():
+    packages = []
     result = github.search_code(QUERY)
     time.sleep(PAUSE)
     page = 0
@@ -1871,30 +1871,30 @@ def extract_source():
             break
         for item in items:
             repo = item.repository
-            data = {}
-            data["code"] = "-".join([repo.owner.login, repo.name])
-            data["user"] = repo.owner.login
-            data["repo"] = repo.name
-            data["branch"] = repo.default_branch
-            data["path"] = item.path
-            data["stars"] = repo.stargazers_count
-            data["download_url"] = item.download_url
+            package = {}
+            package["code"] = "-".join([repo.owner.login, repo.name])
+            package["user"] = repo.owner.login
+            package["repo"] = repo.name
+            package["branch"] = repo.default_branch
+            package["path"] = item.path
+            package["stars"] = repo.stargazers_count
+            package["download_url"] = item.download_url
             try:
-                package = Package(json.loads(item.decoded_content))
-                data["title"] = package.title
-                data["description"] = package.description_text
-                data["content"] = json.dumps(package.to_dict())
+                instance = Package(json.loads(item.decoded_content))
+                package["title"] = instance.title
+                package["description"] = instance.description_text
+                package["content"] = json.dumps(instance.to_dict())
             except (json.JSONDecodeError, FrictionlessException):
                 continue
-            source.append(data)
-        print(f"Found items: {len(source)}")
-    return source
+            packages.append(package)
+        print(f"Found packages: {len(packages)}")
+    return packages
 
 
 # General
 
 
-resource = Resource(extract_source())
+resource = Resource(search_packages())
 resource.write("data/packages.raw.csv")
 </code></pre><h2>Transform</h2>
 <p>As a high-level data collections framework, we will use Frictionless Transform. It will sort the packages by repository's stargazers count and save it to the CSV file:</p>
@@ -2322,7 +2322,7 @@ document.addEventListener("DOMContentLoaded", function () {
           'contrib': {
           'name': 'Contributing',
           'path': 'contrib',
-          'text': "# Contributing To start working on the project clone the repository and enter its directory: ```bash $ git clone git@github.com:frictionlessdata/data-packages.git $ cd data-packages ``` ## Install Run the following script to initiate a virtual environment and install the dependencies: ```bash $ make install $ editor .env # add your Github Token ``` ## Collect To collect the data use the data collection script (run only if you want to update the data): ```bash $ make collect ``` ## Build To build the project use one of these Livemark commands: ```bash $ livemark start # to build and start a live-reload server $ livemark build # to build in non-interactive mode ``` ## Deploy The project is deployed automatically to Github Pages on every push to \"main\". It means that if one propose a change in a PR it will be deployed automatically after merging.",
+          'text': "# Contributing To start working on the project clone the repository and enter its directory: ```bash $ git clone git@github.com:frictionlessdata/data-packages.git $ cd data-packages ``` ## Install Run the following script to initiate a virtual environment and install the dependencies: ```bash $ make install $ editor .env # add your Github Token ``` ## Data To collect the data use the data collection script (run only if you want to update the data): ```bash $ make data ``` ## Build To build the project use one of these Livemark commands: ```bash $ livemark start # to build and start a live-reload server $ livemark build # to build in non-interactive mode ``` ## Deploy The project is deployed automatically to Github Pages on every push to \"main\". It means that if one propose a change in a PR it will be deployed automatically after merging.",
       },
       };
   const searchIndex = lunr(function () {

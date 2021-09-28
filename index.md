@@ -13,8 +13,8 @@ text: Currently, some datasets might be missing. See this <a href="https://githu
 
 ```html markup
 {% for row in frictionless.extract('data/packages.csv') %}
-<div class="package">
-  <div class="package-content">
+<div class="item">
+  <div class="item-content">
     <h3>
       <a href="#card={{ row.code }}" style="color: black">
         {{ row.title or row.code }}
@@ -22,15 +22,15 @@ text: Currently, some datasets might be missing. See this <a href="https://githu
     </h3>
     <p>{{ row.description or 'Description is not provided'}}</p>
     <p>
-      <a class="package-content-link" href="https://github.com/{{ row.user}}/{{row.repo }}" target="_blank">
+      <a class="item-content-link" href="https://github.com/{{ row.user}}/{{row.repo }}" target="_blank">
         Github <span class="fa fa-external-link-alt"></span>
       </a>
     </p>
   </div>
-  <div class="package-stars">
+  <div class="item-stars">
     <span class="fa-stack fa-2x">
-      <i class="fas fa-stack-2x fa-star fa-inverse package-stars-icon"></i>
-      <i class="fas fa-stack-1x package-stars-count">{{ row.stars }}</i>
+      <i class="fas fa-stack-2x fa-star fa-inverse item-stars-icon"></i>
+      <i class="fas fa-stack-1x item-stars-count">{{ row.stars }}</i>
     </span>
   </div>
 </div>

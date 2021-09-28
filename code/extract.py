@@ -16,45 +16,45 @@ github = Github(os.environ["GITHUB_TOKEN"], per_page=100)
 # Helpers
 
 
-def extract_source():
-    source = []
-    result = github.search_code(QUERY)
+def search_items():
+    items = []
+    results = github.search_code(QUERY)
     time.sleep(PAUSE)
-    page = 0
+    page_number = 0
     while True:
         try:
-            items = result.get_page(page)
+            page = results.get_page(page_number)
         except RateLimitExceededException:
             time.sleep(RETRY)
             continue
         time.sleep(PAUSE)
-        page += 1
-        if not items:
+        page_number += 1
+        if not page:
             break
-        for item in items:
-            repo = item.repository
-            data = {}
-            data["code"] = "-".join([repo.owner.login, repo.name])
-            data["user"] = repo.owner.login
-            data["repo"] = repo.name
-            data["branch"] = repo.default_branch
-            data["path"] = item.path
-            data["stars"] = repo.stargazers_count
-            data["download_url"] = item.download_url
+        for result in page:
+            repo = result.repository
+            item = {}
+            item["code"] = "-".join([repo.owner.login, repo.name])
+            item["user"] = repo.owner.login
+            item["repo"] = repo.name
+            item["branch"] = repo.default_branch
+            item["path"] = result.path
+            item["stars"] = repo.stargazers_count
+            item["download_url"] = result.download_url
             try:
-                package = Package(json.loads(item.decoded_content))
-                data["title"] = package.title
-                data["description"] = package.description_text
-                data["content"] = json.dumps(package.to_dict())
+                package = Package(json.loads(result.decoded_content))
+                item["title"] = package.title
+                item["description"] = package.description_text
+                item["content"] = json.dumps(package.to_dict())
             except (json.JSONDecodeError, FrictionlessException):
                 continue
-            source.append(data)
-        print(f"Found items: {len(source)}")
-    return source
+            items.append(item)
+        print(f"Found items: {len(items)}")
+    return items
 
 
 # General
 
 
-resource = Resource(extract_source())
+resource = Resource(search_items())
 resource.write("data/packages.raw.csv")

@@ -1,4 +1,4 @@
-.package {
+.item {
   position: relative;
   border: solid 1px #eee;
   border-radius: 10px;
@@ -9,24 +9,24 @@
   align-items: center;
 }
 
-.package:nth-child(odd) {
+.item:nth-child(odd) {
   background-color: #EEE8C8;
 }
 
-.package-content {
+.item-content {
   width: 100%;
   border-right: dashed 1px #ccc;
 }
 
-.package-content-link {
+.item-content-link {
   color: grey !important;
 }
 
-.package-stars {
+.item-stars {
   font-size: 24px;
   padding-left: 20px;
 }
 
-.package-stars-count {
+.item-stars-count {
   font-size: 30px;
 }
